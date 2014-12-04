@@ -207,6 +207,9 @@ public class AsipClient {
     
     // A method to do what is says on the tin... 
     private void handleInputEvent(String input) {
+		if (DEBUG) {
+			System.out.println("DEBUG: received message "+input);
+		}			
    		if (input.charAt(1) == IO_SERVICE) {		
    			// Digital pins (in port)
 		 

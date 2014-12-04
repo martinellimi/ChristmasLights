@@ -44,11 +44,12 @@ public class SimpleDistance extends SimpleSerialBoard {
 			Thread.sleep(300);
 
 			while (true) {
-
+				System.out.println("distance:" + testBoard.getDistance());
 				if ((testBoard.getDistance() < 20) && (!isLEDon)) {
 					testBoard.digitalWrite(13, AsipClient.HIGH);
 					isLEDon = true;
 					System.out.println("Turning ON");
+					
 				}
 				if ((testBoard.getDistance() >= 20) && isLEDon) {
 					testBoard.digitalWrite(13, AsipClient.LOW);

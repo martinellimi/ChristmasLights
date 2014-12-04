@@ -1,5 +1,6 @@
 package mdx.christmas.twitter;
 
+import mdx.christmas.arduino.SimpleNeoPixelWithDistance;
 import twitter4j.StallWarning;
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
@@ -10,6 +11,12 @@ import twitter4j.User;
 
 public class Listener implements StatusListener {
 
+	private SimpleNeoPixelWithDistance b;
+	
+	public void setBoard(SimpleNeoPixelWithDistance board) {
+		this.b = board;
+	}
+	
 	@Override
 	public void onException(Exception arg0) {
 	}
@@ -37,6 +44,9 @@ public class Listener implements StatusListener {
         System.out.println(tweetId);
         String content = status.getText();
         System.out.println(content +"\n");
+        
+        b.doStrip1Show();
+        
 	}
 
 	@Override

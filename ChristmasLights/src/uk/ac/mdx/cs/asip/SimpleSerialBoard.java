@@ -18,7 +18,7 @@ import jssc.SerialPortException;
 public class SimpleSerialBoard {
 
 	// This board uses serial communication (provided by jssc)
-	SerialPort serialPort;
+	public SerialPort serialPort;
 	
 	// The client for the aisp protocol
 	AsipClient asip;
