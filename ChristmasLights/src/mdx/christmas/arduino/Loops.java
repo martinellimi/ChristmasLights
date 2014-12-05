@@ -203,6 +203,12 @@ public class Loops {
 				false);
 	}
 
+	/**
+	 * This loop blinks all the lights
+	 * @param color
+	 * @param stripNumber
+	 * @param numPixels
+	 */
 	public void startBlinkAllLoop(LightsColor color, int stripNumber,
 			int numPixels) {
 		try {

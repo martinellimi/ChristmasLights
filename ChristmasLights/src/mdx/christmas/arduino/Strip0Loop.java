@@ -32,13 +32,21 @@ public class Strip0Loop implements Runnable {
 		Loops loops = new Loops();
 		loops.startBlinkerLoopOddEven(color, STRIP, NUM_PIXEL);
 	}
+	
+	private void startBlinkAll() {
+		Loops loops = new Loops();
+		loops.startBlinkAllLoop(color, STRIP, NUM_PIXEL);
+	}
+	
 	public void run() {
 		if(counter > 0 && counter < 100) {
 			this.startSimpleBlinker();
 		} else if(counter >= 100 && counter < 200) {
 			this.startEndToMiddle();
-		} else {
+		} else if(counter >= 200 && counter < 250) {
 			this.startBlinkerOddEven();
+		} else {
+			this.startBlinkAll();
 		}
 	}
 }
