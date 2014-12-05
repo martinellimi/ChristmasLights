@@ -19,25 +19,27 @@ public class DistanceSensor {
 		
 		try {
 			int distance = SimpleNeoPixelWithDistance.getInstance().getDistance();
-			if ( (distance < 20) && (distance>0) && counter < 100) {
+			System.out.println("counter: " + counter);
+			System.out.println("Distance: " + distance);
+			if ( (distance < 20) && (distance>0) && counter < 150) {
 				SimpleNeoPixelWithDistance.getInstance().doStrip0Show(LightsColor.Red, counter);
 				SimpleNeoPixelWithDistance.getInstance().doStrip1Show(LightsColor.Green, counter);
-			} else if ( (distance > 20) && counter < 100 ) {
+			} else if ( (distance > 20) && counter < 150 ) {
 				SimpleNeoPixelWithDistance.getInstance().doStrip0Show(LightsColor.Yellow, counter);
 				SimpleNeoPixelWithDistance.getInstance().doStrip1Show(LightsColor.Red, counter);
-			} else if ((distance < 20) && (distance>0) && counter > 100) {
+			} else if ((distance < 20) && (distance>0) && counter > 150) {
 				SimpleNeoPixelWithDistance.getInstance().doStrip0Show(LightsColor.Green, counter);
 				SimpleNeoPixelWithDistance.getInstance().doStrip1Show(LightsColor.Yellow, counter);
-			} else if( (distance > 20) && counter > 100 ) {
-				SimpleNeoPixelWithDistance.getInstance().doStrip0Show(LightsColor.Black, counter);
-				SimpleNeoPixelWithDistance.getInstance().doStrip1Show(LightsColor.Black, counter);
+			} else if( (distance > 20) && counter > 150 ) {
+				SimpleNeoPixelWithDistance.getInstance().doStrip0Show(LightsColor.Grey, counter);
+				SimpleNeoPixelWithDistance.getInstance().doStrip1Show(LightsColor.Grey, counter);
 			}
 			
 			if(counter> 300) {
 				counter = 0;
 			}
 			counter++;
-			System.out.println(counter);
+			
 			Thread.sleep(20);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
