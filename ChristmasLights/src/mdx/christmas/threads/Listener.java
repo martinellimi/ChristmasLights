@@ -1,6 +1,6 @@
-package mdx.christmas.twitter;
+package mdx.christmas.threads;
 
-import mdx.christmas.arduino.SimpleNeoPixelWithDistance;
+import mdx.christmas.threads.MailBox;
 import twitter4j.StallWarning;
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
@@ -11,12 +11,6 @@ import twitter4j.User;
 
 public class Listener implements StatusListener {
 
-	private SimpleNeoPixelWithDistance b;
-	
-	public void setBoard(SimpleNeoPixelWithDistance board) {
-		this.b = board;
-	}
-	
 	@Override
 	public void onException(Exception arg0) {
 	}
@@ -36,21 +30,26 @@ public class Listener implements StatusListener {
 	@Override
 	public void onStatus(Status status) {
 		User user = status.getUser();
-        
-        String username = status.getUser().getScreenName();
-        String profileLocation = user.getLocation();
-        System.out.println(profileLocation);
-        long tweetId = status.getId(); 
-        System.out.println(tweetId);
-        String content = status.getText();
-        System.out.println(content +"\n");
-        
-        b.doStrip1Show();
-        
+
+		String username = status.getUser().getScreenName();
+		String profileLocation = user.getLocation();
+		System.out.println(profileLocation);
+		long tweetId = status.getId();
+		System.out.println(tweetId);
+		String content = status.getText();
+		System.out.println(content + "\n");
+
+		/**
+		 * When I receive a tweet, I will change the flag of execution and the distance 
+		 * sensor thread will wait and will execute the twitter
+		 */
+		
+		MailBox.getInstance().changeExecuteFlag(MailBox.EXECUTE_TWITTER);
+		
 	}
 
 	@Override
 	public void onTrackLimitationNotice(int arg0) {
 	}
-	
+
 }

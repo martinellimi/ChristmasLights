@@ -1,14 +1,14 @@
 package mdx.christmas;
 
-import mdx.christmas.arduino.SimpleNeoPixel;
-import mdx.christmas.twitter.Twitter;
+import mdx.christmas.threads.RunnableController;
 
+/** 
+ * This class starts the controllerThreads
+ * @author martinellimi
+ */
 public class Execute {
 	public static void main(String[] args) {
-		Twitter twt = new Twitter();
-		twt.startTwitter();
-
-		SimpleNeoPixel sp = new SimpleNeoPixel("");
-		sp.startNeoPixel();
+		Thread controllerThread = new Thread(RunnableController.getInstance());
+		controllerThread.start();
 	}
 }
